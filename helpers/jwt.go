@@ -17,7 +17,7 @@ func GenerateToken(username string) string{
 		ExpiresAt: jwt.NewNumericDate(expirationTime),
 	}
 
-	token, _ := jwt.NewWithClaims(jwt.SigningMethodES256, claims).SignedString(jwtKey)
+	token, _ := jwt.NewWithClaims(jwt.SigningMethodHS256, claims).SignedString(jwtKey)
 
 	return token
 }
