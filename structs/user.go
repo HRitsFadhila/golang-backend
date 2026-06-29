@@ -14,14 +14,14 @@ type UserCreateRequest struct {
 	Name     string `json:"name" binding:"required"`
 	Username string `json:"username" binding:"required" gorm:"unique;not null"`
 	Email    string `json:"email" binding:"required" gorm:"unique;not null"`
-	Password string `json:"password" binding:"required"`
+	Password string `json:"password" binding:"required,min=8"`
 }
 
 type UserUpdateRequest struct {
-	Name     string `json:"name" binding:"required"`
-	Username string `json:"username" binding:"required" gorm:"unique;not null"`
-	Email    string `json:"email" binding:"required" gorm:"unique; not null"`
-	Password string `json:"password,omitempty"`
+	Name     *string `json:"name" binding="omitempty,min=3"`
+	Username *string `json:"username" binding="omitempty,min=3"`
+	Email    *string `json:"email" binding:"omitempty,email"`
+	Password *string `json:"password" binding:"omitempty,min=8"`
 }
 
 type UserLoginRequest struct {
